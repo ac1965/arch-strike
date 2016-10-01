@@ -28,7 +28,7 @@ Include = /etc/pacman.d/archstrike-mirrorlist\n\
 [archstrike-testing]\n\
 Include = /etc/pacman.d/archstrike-mirrorlist"\
                 >> /etc/pacman.conf
-RUN pacman -Syy
+RUN pacman -Syyu
 # A feeling of fondness :p
 # RUN pacman -Syu --noconfrim archstrike
 USER test
