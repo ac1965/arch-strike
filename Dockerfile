@@ -31,4 +31,4 @@ Include = /etc/pacman.d/archstrike-mirrorlist"\
 RUN pacman -Syyu
 # A feeling of fondness :p
 # RUN pacman -Syu --noconfrim archstrike
-USER test
+USER pwner
