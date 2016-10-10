@@ -29,6 +29,14 @@ Include = /etc/pacman.d/archstrike-mirrorlist\n\
 Include = /etc/pacman.d/archstrike-mirrorlist"\
                 >> /etc/pacman.conf
 RUN pacman -Syyu
+
 # A feeling of fondness :p
-# RUN pacman -Syu --noconfrim archstrike
+# RUN pacman -Syu --noconfirm archstrike
+COPY ["packages/", "/tmp/packages/"]
+RUN pacman -S --noconfirm --needed $(cat /tmp/packages/base.txt)
+
+# Metasploit
+USER postgres
+RUN initdb -E UTF8 -D '/var/lib/postgres/data'
+
 USER pwner
