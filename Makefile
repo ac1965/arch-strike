@@ -25,7 +25,10 @@ run: check_exists
 # Used for quality diagnostics
 # Opens bash session
 run_bash: check_exists
-	docker run --rm -it --entrypoint=/bin/bash $(NAME):$(VERSION)
+	docker run --rm -it \
+		--volume /tmp/share \
+		--volume /tmp:/tmp/share \
+		--entrypoint=/bin/bash $(NAME):$(VERSION)
 
 # Remove Docker image
 clean:
