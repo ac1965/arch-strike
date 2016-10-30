@@ -27,7 +27,7 @@ run: check_exists
 run_bash: check_exists
 	docker run --rm -it \
 		--volume /tmp/share \
-		--volume /tmp:/tmp/share \
+		--volume share:/tmp/share \
 		--entrypoint=/bin/bash $(NAME):$(VERSION)
 
 # Remove Docker image
