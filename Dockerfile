@@ -13,11 +13,10 @@ Server = https://mirror.archstrike.org/\$arch/\$repo"\
                 >> /etc/pacman.conf
 RUN pacman -Syy
 RUN pacman-key --init
-RUN dirmngr < /dev/null
-RUN pacman-key -r 7CBC0D51
-RUN pacman-key --lsign-key 7CBC0D51
-RUN pacman -Syu --noconfirm archstrike-keyring
-RUN pacman -Syu --noconfirm archstrike-mirrorlist
+RUN dirmngr < /dev/null && pacman-key -r 7CBC0D51 && \
+	pacman-key --lsign-key 7CBC0D51 && \
+	pacman -Syu --noconfirm archstrike-keyring && \
+	pacman -Syu --noconfirm archstrike-mirrorlist
 RUN sed -i '/archstrike/{N;d}' /etc/pacman.conf
 RUN sed -i '/archstrike-testing/{N;d}' /etc/pacman.conf
 RUN echo -e "\
@@ -36,7 +35,12 @@ COPY ["packages/", "/tmp/packages/"]
 RUN pacman -S --noconfirm --needed $(cat /tmp/packages/base.txt)
 
 # Metasploit
+USER root
+RUN mkdir /run/postgresql
+RUN chown -R postgres:postgres /run/postgresql
+RUN chown -R postgres:postgres /var/lib/postgres
 USER postgres
 RUN initdb -E UTF8 -D '/var/lib/postgres/data'
+RUN pg_ctl -D /var/lib/postgres/data -l logfile start
 
 USER pwner
