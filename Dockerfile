@@ -13,7 +13,7 @@ Server = https://mirror.archstrike.org/\$arch/\$repo"\
                 >> /etc/pacman.conf
 RUN pacman -Syy
 RUN pacman-key --init
-RUN dirmngr < /dev/null && pacman-key -r 7CBC0D51 && \
+RUN sudo -i dirmngr < /dev/null && pacman-key -r 7CBC0D51 && \
 	pacman-key --lsign-key 7CBC0D51 && \
 	pacman -Syu --noconfirm archstrike-keyring && \
 	pacman -Syu --noconfirm archstrike-mirrorlist
