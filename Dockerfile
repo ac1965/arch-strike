@@ -33,10 +33,10 @@ RUN pacman -Syyu
 # RUN pacman -Syu --noconfirm archstrike
 COPY ["packages/", "/tmp/packages/"]
 RUN pacman -S --noconfirm --needed $(cat /tmp/packages/base.txt)
-
-# Metasploit
 RUN pip2 install --upgrade pip
 RUN pip install pypandoc
+
+# Metasploit
 RUN mkdir -p /run/postgresql
 RUN chown -R postgres:postgres /run/postgresql
 RUN chown -R postgres:postgres /var/lib/postgres
