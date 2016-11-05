@@ -1,5 +1,4 @@
 capstone
-pwntools
 dnsmap
 ettercap
 exploitdb-git
@@ -9,6 +8,7 @@ nasm
 nikto
 nmap
 postgresql
+pwntools
 python-capstone
 python2-capstone
 pytinydns-git
