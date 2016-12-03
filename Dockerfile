@@ -30,17 +30,9 @@ Include = /etc/pacman.d/archstrike-mirrorlist"\
 RUN pacman -Syyu
 
 # A feeling of fondness :p
-# RUN pacman -Syu --noconfirm archstrike
 COPY ["packages/", "/tmp/packages/"]
-RUN pacman -S --noconfirm --needed $(cat /tmp/packages/base.txt)
+RUN pacman -S --noconfirm --needed $(egrep -v '^#|^$' /tmp/packages/base.txt)
 RUN pip2 install --upgrade pip
 RUN pip install pypandoc
-
-# Metasploit
-RUN mkdir -p /run/postgresql
-RUN chown -R postgres:postgres /run/postgresql
-RUN chown -R postgres:postgres /var/lib/postgres
-RUN su - postgres -c "initdb -E UTF8 -D '/var/lib/postgres/data'"
-RUN su - postgres -c "pg_ctl -D /var/lib/postgres/data -l /var/lib/postgres/logfile start"
 
 USER pwner
