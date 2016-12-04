@@ -3,6 +3,7 @@ MAINTAINER ac1965 <https://github.com/ac1965>
 
 # archstrike
 USER root
+WORKDIR /root
 RUN echo -e "\
 \n\
 [archstrike]\n\
