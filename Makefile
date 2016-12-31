@@ -26,8 +26,8 @@ run: check_exists
 # Opens bash session
 run_bash: check_exists
 	docker run --rm -it \
-		--volume /tmp/share \
-		--volume share:/tmp/share \
+		--cap-add=NET_ADMIN --device /dev/net/tun \
+		--volume /tmp/share:/tmp/share \
 		--entrypoint=/bin/bash $(NAME):$(VERSION)
 
 # Remove Docker image

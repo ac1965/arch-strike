@@ -14,11 +14,13 @@ Server = https://mirror.archstrike.org/\$arch/\$repo"\
                 >> /etc/pacman.conf
 RUN pacman -Syy
 RUN pacman-key --init
-RUN sudo -i dirmngr < /dev/null && \
-	pacman-key -r 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && \
-	pacman-key --lsign-key 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && \
-	pacman -S --noconfirm archstrike-keyring && \
-	pacman -S --noconfirm archstrike-mirrorlist
+#	pacman-key -r 7CBC0D51 && pacman-key --lsign-key 7CBC0D51 && \
+#	pacman-key -r 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && \
+#	pacman-key --lsign-key 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && \
+#RUN sudo -i dirmngr < /dev/null && \
+RUN dirmngr < /dev/null && \
+	pacman-key -r DE64825E7CBC0D51 && pacman-key --lsign-key DE64825E7CBC0D51 && \
+	pacman -S --noconfirm archstrike-keyring && pacman -S --noconfirm archstrike-mirrorlist
 RUN sed -i '/archstrike/{N;d}' /etc/pacman.conf
 RUN sed -i '/archstrike-testing/{N;d}' /etc/pacman.conf
 RUN echo -e "\
