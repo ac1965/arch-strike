@@ -31,7 +31,6 @@ Include = /etc/pacman.d/archstrike-mirrorlist\n\
 [archstrike-testing]\n\
 Include = /etc/pacman.d/archstrike-mirrorlist"\
                 >> /etc/pacman.conf
-#RUN pacman -Syyu
 
 # A feeling of fondness :p
 COPY ["packages/", "/tmp/packages/"]
