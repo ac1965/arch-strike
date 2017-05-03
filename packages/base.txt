@@ -17,6 +17,7 @@ pytinydns-git
 scapy
 shellsploit
 sqlmap
+sslscan
 sslnuke-git
 thc-ssl-dos
 volatility
